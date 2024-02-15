@@ -16,7 +16,7 @@ const SingleProducts = ({ prod }) => {
         <Card.Img
           variant="top"
           src={prod.imageUrl}
-          alt={prod.name}
+          alt={prod.title}
           className="img"
         />
         <Card.Body>

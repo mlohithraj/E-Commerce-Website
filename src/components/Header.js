@@ -3,7 +3,9 @@ import { Badge, Container, Dropdown, Nav, Navbar } from 'react-bootstrap';
 // import CartReducer from './context/Reducer';
 import { CartState } from './context/Context';
 import { AiFillDelete } from 'react-icons/ai';
+import { FaShoppingCart } from 'react-icons/fa';
 import './styles.css';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const {
@@ -16,13 +18,13 @@ const Header = () => {
     <div>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="/">Home</Navbar.Brand>
-          <Navbar.Brand href="/">Store</Navbar.Brand>
-          <Navbar.Brand href="/">About</Navbar.Brand>
+          <Link to="/HomePage">Home</Link>
+          <Link to="/Store">Store</Link>
+          <Link to="/About">About</Link>
           <Nav>
             <Dropdown alignRight>
               <Dropdown.Toggle>
-                {/* <FaShoppingCart color="white" fontSize="25px" /> */}
+                <FaShoppingCart color="white" fontSize="25px" />
                 <Badge>Cart</Badge>
                 <Badge>{cart.length}</Badge>
               </Dropdown.Toggle>
@@ -33,7 +35,7 @@ const Header = () => {
                       <span className="cartitem" key={prod.title}>
                         <img
                           src={prod.imageUrl}
-                          alt="prod.name"
+                          alt={prod.title}
                           className="cartItemImg"
                         />
                         <div className="cartItemDetail">
