@@ -1,0 +1,24 @@
+.home {
+  display: flex;
+}
+
+.productContainer {
+  display: flex;
+  width: 20%;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.products {
+  width: 30%;
+  margin: 10px;
+}
+
+.img {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  max-width: 100%;
+  height: auto;
+}

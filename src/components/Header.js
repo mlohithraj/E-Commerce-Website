@@ -1,32 +1,26 @@
 import React from 'react';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import Cart from './Cart';
+import { Badge, Container, Dropdown, Nav, Navbar } from 'react-bootstrap';
 
 const Header = () => {
   return (
     <div>
-      <Navbar bg="dark" expand="lg" variant="dark">
+      <Navbar bg="dark" variant="dark">
         <Container>
-          <Nav className="me-auto" style={{ marginLeft: '550px' }}>
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#store">Store</Nav.Link>
-            <Nav.Link href="#about">About</Nav.Link>
+          <Navbar.Brand href="/">Home</Navbar.Brand>
+          <Navbar.Brand href="/">Store</Navbar.Brand>
+          <Navbar.Brand href="/">About</Navbar.Brand>
+          <Nav>
+            <Dropdown alignRight>
+              <Dropdown.Toggle>
+                {/* <FaShoppingCart color="white" fontSize="25px" /> */}
+                <Badge>Cart</Badge>
+                <Badge>0</Badge>
+              </Dropdown.Toggle>
+              <Dropdown.Menu variant="Secondary">Cart is Empty</Dropdown.Menu>
+            </Dropdown>
           </Nav>
-          <Cart />
         </Container>
       </Navbar>
-      <h1
-        style={{
-          backgroundColor: 'grey',
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '30px',
-          fontSize: '50px',
-          color: 'white',
-        }}
-      >
-        The Generics
-      </h1>
     </div>
   );
 };
