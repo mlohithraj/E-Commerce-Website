@@ -1,6 +1,7 @@
 import React from 'react';
 import { CartState } from './context/Context';
 import SingleProducts from './SingleProducts';
+import './styles.css';
 
 const Home = () => {
   const {
@@ -18,8 +19,8 @@ const Home = () => {
     <div className="home">
       <div className="productContainer">
         {innerProductsArray.map((prod) => (
-        //   <span key={index}>{prod.title}</span>
-        <SingleProducts prod={prod} key={prod.title}></SingleProducts>
+          //   <span key={index}>{prod.title}</span>
+          <SingleProducts prod={prod} key={prod.title}></SingleProducts>
         ))}
       </div>
     </div>
