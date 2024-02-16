@@ -1,0 +1,16 @@
+.about {
+  padding: 30px;
+}
+
+.about h3 {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.aboutConatiner Image p {
+  display: inline;
+  justify-content: center;
+  align-items: center;
+}

@@ -18,9 +18,15 @@ const Header = () => {
     <div>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Link to="/HomePage">Home</Link>
-          <Link to="/Store">Store</Link>
-          <Link to="/About">About</Link>
+          <Link to="/HomePage">
+            <Navbar.Brand>Home</Navbar.Brand>
+          </Link>
+          <Link to="/Store">
+            <Navbar.Brand>Store</Navbar.Brand>
+          </Link>
+          <Link to="/About">
+            <Navbar.Brand>About</Navbar.Brand>
+          </Link>
           <Nav>
             <Dropdown alignRight>
               <Dropdown.Toggle>
@@ -63,6 +69,7 @@ const Header = () => {
           </Nav>
         </Container>
       </Navbar>
+      <h1 className='home-sub'>The Generics</h1>
     </div>
   );
 };
