@@ -27,6 +27,9 @@ const Header = () => {
           <Link to="/About">
             <Navbar.Brand>About</Navbar.Brand>
           </Link>
+          <Link to="/Contact">
+            <Navbar.Brand>Contact</Navbar.Brand>
+          </Link>
           <Nav>
             <Dropdown alignRight>
               <Dropdown.Toggle>
@@ -69,7 +72,7 @@ const Header = () => {
           </Nav>
         </Container>
       </Navbar>
-      <h1 className='home-sub'>The Generics</h1>
+      <h1 className="home-sub">The Generics</h1>
     </div>
   );
 };

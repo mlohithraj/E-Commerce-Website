@@ -1,11 +1,18 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
 import CartReducer from './Reducer';
-import { faker } from '@faker-js/faker';
+// import { faker } from '@faker-js/faker';
 
 const Cart = createContext();
 
 const Context = ({ children }) => {
-  const products = [...Array(1)].map(() => [
+  const products =  [...Array(1)].map(() =>
+  [
     {
       title: 'Colors',
       price: 100,
@@ -30,7 +37,34 @@ const Context = ({ children }) => {
       imageUrl:
         'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
     },
-  ]);
+  ]
+  );
+
+  // const [movie, setMovie] = useState([]);
+
+  // const products = async () => {
+  //   const res = await fetch('https://swapi.dev/api/films');
+  //   const data = await res.json();
+
+  //   // console.log(data)
+
+  //   if (data && data.results) {
+  //     const transformedMovies = data.results.map((movieData) => {
+  //       return {
+  //         title: movieData.title,
+  //         imageUrl: movieData.opening_crawl,
+  //         price: movieData.episode_id,
+  //       };
+  //     });
+  //     setMovie(transformedMovies);
+  //   }
+  // };
+
+  // console.log(movie);
+
+  // useEffect(() => {
+  //   products();
+  // }, []);
 
   const [state, dispatch] = useReducer(CartReducer, {
     products: products,

@@ -9,7 +9,7 @@ const Home = () => {
   } = CartState();
   console.log(products);
 
-  if (!Array.isArray(products) || products.length === 0) {
+  if (products.length === 0) {
     return <div>No products available</div>;
   }
 

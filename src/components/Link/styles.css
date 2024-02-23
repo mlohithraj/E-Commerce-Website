@@ -14,3 +14,15 @@
   justify-content: center;
   align-items: center;
 }
+
+.form {
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit {
+  display: flex;
+  margin-top: 80px;
+  margin-left: 45%;
+}
