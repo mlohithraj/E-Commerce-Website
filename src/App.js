@@ -2,15 +2,13 @@
 import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import ProductDetails from './components/Link/ProductDetails';
 import HomePage from './components/Link/HomePage';
 import About from './components/Link/About';
 import Contact from './components/Link/Contact';
 
 const App = () => {
-  // const URL =
-  //   'https://movie-list-62da6-default-rtdb.asia-southeast1.firebasedatabase.app/contact.json';
-
   const contactUsPage = async (contact) => {
     const response = await fetch(
       'https://movie-list-62da6-default-rtdb.asia-southeast1.firebasedatabase.app/contact.json',
@@ -27,21 +25,28 @@ const App = () => {
   };
 
   return (
-    <BrowserRouter>
+    <div>
       <Header />
-      <Route path="/Store">
-        <Home />
-      </Route>
-      <Route path="/HomePage">
-        <HomePage />
-      </Route>
-      <Route path="/About">
-        <About />
-      </Route>
-      <Route path="/Contact">
-        <Contact onAddContact={contactUsPage} />
-      </Route>
-    </BrowserRouter>
+      <main>
+        <Switch>
+          <Route path="/HomePage">
+            <HomePage />
+          </Route>
+          <Route path="/About">
+            <About />
+          </Route>
+          <Route path="/Contact">
+            <Contact onAddContact={contactUsPage} />
+          </Route>
+          <Route path="/Store/:productId">
+            <ProductDetails />
+          </Route>
+          <Route path="/Store">
+            <Home />
+          </Route>
+        </Switch>
+      </main>
+    </div>
   );
 };
 

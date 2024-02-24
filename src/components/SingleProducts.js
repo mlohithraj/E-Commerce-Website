@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Col, Row, Button } from 'react-bootstrap';
 import { CartState } from './context/Context';
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 const SingleProducts = ({ prod }) => {
@@ -20,7 +21,11 @@ const SingleProducts = ({ prod }) => {
           className="img"
         />
         <Card.Body>
-          <Card.Title>{prod.title} </Card.Title>
+          <Link
+            to={{ pathname: `/Store/${prod.id}`, state: { product: prod } }}
+          >
+            <Card.Title>{prod.title}</Card.Title>
+          </Link>
           <Card.Subtitle>
             <span> Rs: {prod.price} </span>
           </Card.Subtitle>

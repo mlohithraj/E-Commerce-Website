@@ -26,3 +26,28 @@
   margin-top: 80px;
   margin-left: 45%;
 }
+
+.prod {
+  margin-top: 100%;
+}
+
+.detailedPage {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+
+.container h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.detailedPage h2 {
+  margin-left: 100px;
+}
+
+.detailedPage p {
+  margin-left: 100px;
+  font-size: ;
+}

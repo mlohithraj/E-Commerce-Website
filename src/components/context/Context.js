@@ -40,35 +40,10 @@ const Context = ({ children }) => {
   ]
   );
 
-  // const [movie, setMovie] = useState([]);
-
-  // const products = async () => {
-  //   const res = await fetch('https://swapi.dev/api/films');
-  //   const data = await res.json();
-
-  //   // console.log(data)
-
-  //   if (data && data.results) {
-  //     const transformedMovies = data.results.map((movieData) => {
-  //       return {
-  //         title: movieData.title,
-  //         imageUrl: movieData.opening_crawl,
-  //         price: movieData.episode_id,
-  //       };
-  //     });
-  //     setMovie(transformedMovies);
-  //   }
-  // };
-
-  // console.log(movie);
-
-  // useEffect(() => {
-  //   products();
-  // }, []);
-
   const [state, dispatch] = useReducer(CartReducer, {
     products: products,
     cart: [],
+    productDetail: [],
   });
 
   return <Cart.Provider value={{ state, dispatch }}>{children}</Cart.Provider>;
