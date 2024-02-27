@@ -8,11 +8,14 @@ import React, {
 import CartReducer from './Reducer';
 // import { faker } from '@faker-js/faker';
 
-const Cart = createContext();
+const Cart = React.createContext({
+  token: '',
+  isLoggedIn: false,
+  login: (token) => {},
+});
 
 const Context = ({ children }) => {
-  const products =  [...Array(1)].map(() =>
-  [
+  const products = [...Array(1)].map(() => [
     {
       title: 'Colors',
       price: 100,
@@ -37,16 +40,31 @@ const Context = ({ children }) => {
       imageUrl:
         'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
     },
-  ]
-  );
+  ]);
 
-  const [state, dispatch] = useReducer(CartReducer, {
+    const [token, setToken] = useState(null);
+
+      const userIsLoggedIn = !!token;
+
+        const loginHandler = (token) => {
+          setToken(token);
+        };
+
+
+  const [state, dispatch, contextValue] = useReducer(CartReducer, {
     products: products,
     cart: [],
     productDetail: [],
+    isLoggedIn: userIsLoggedIn,
+    token: token,
+    login: loginHandler,
   });
 
-  return <Cart.Provider value={{ state, dispatch }}>{children}</Cart.Provider>;
+  return (
+    <Cart.Provider value={{ state, dispatch, contextValue }}>
+      {children}
+    </Cart.Provider>
+  );
 };
 
 export default Context;

@@ -30,6 +30,9 @@ const Header = () => {
           <Link to="/Contact">
             <Navbar.Brand>Contact</Navbar.Brand>
           </Link>
+          <Link to="/Form">
+            <Navbar.Brand>Login</Navbar.Brand>
+          </Link>
           <Nav>
             <Dropdown alignRight>
               <Dropdown.Toggle>
