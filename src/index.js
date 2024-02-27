@@ -8,15 +8,18 @@ import reportWebVitals from './reportWebVitals';
 // import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Context from './components/context/Context';
+import { AuthContextProvider } from './components/context/auth-context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Context>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Context>
+    <AuthContextProvider>
+      <Context>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Context>
+    </AuthContextProvider>
   </React.StrictMode>,
 );
 

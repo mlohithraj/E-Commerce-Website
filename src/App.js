@@ -2,7 +2,7 @@
 import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import ProductDetails from './components/Link/ProductDetails';
 import HomePage from './components/Link/HomePage';
 import About from './components/Link/About';
@@ -11,14 +11,10 @@ import Form from './components/Link/Form';
 import {} from 'react-bootstrap';
 import { useContext } from 'react';
 import Context, { CartState } from './components/context/Context';
+import AuthContext from './components/context/auth-context';
 
 const App = () => {
-  const {
-    state: { cart },
-    dispatch,
-    productDispatch,
-    contextValue,
-  } = CartState();
+  const autCtx = useContext(AuthContext);
 
   const contactUsPage = async (contact) => {
     const response = await fetch(
@@ -53,10 +49,14 @@ const App = () => {
             <ProductDetails />
           </Route>
           <Route path="/Store">
-            <Home />
+            {autCtx.isLoggedIn && <Home />}
+            {!autCtx.isLoggedIn && <Redirect to="/Form" />}
           </Route>
           <Route path="/Form">
             <Form />
+          </Route>
+          <Route path="*">
+            <Redirect to="/" />
           </Route>
         </Switch>
       </main>

@@ -42,7 +42,7 @@ const Form = () => {
           }
         })
         .then((data) => {
-          history.replace('/');
+          
         })
         .catch((err) => {
           alert(err.message);
