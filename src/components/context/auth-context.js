@@ -1,31 +1,51 @@
-import React, { useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
-const AuthContext = React.createContext({
-  token: '',
+const AuthContext = createContext({
+  token: null,
   isLoggedIn: false,
-  login: (token) => {},
+  userEmail: null,
+  login: (token, email) => {},
   logout: () => {},
 });
 
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem('token');
-  const [token, setToken] = useState(null);
+  const initialUserEmail = localStorage.getItem('userEmail');
+  const [token, setToken] = useState(initialToken);
+  const [userEmail, setUserEmail] = useState(initialUserEmail);
 
   const userIsLoggedIn = !!token;
 
-  const loginHandler = (token) => {
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem('token', token);
+    } else {
+      localStorage.removeItem('token');
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (userEmail) {
+      localStorage.setItem('userEmail', userEmail);
+    } else {
+      localStorage.removeItem('userEmail');
+    }
+  }, [userEmail]);
+
+  const loginHandler = (token, email) => {
     setToken(token);
-    localStorage.setItem('token', token);
+    setUserEmail(email);
   };
 
   const logoutHandler = () => {
     setToken(null);
-    localStorage.removeItem('token');
+    setUserEmail(null);
   };
 
   const contextValue = {
     token: token,
     isLoggedIn: userIsLoggedIn,
+    userEmail: userEmail,
     login: loginHandler,
     logout: logoutHandler,
   };

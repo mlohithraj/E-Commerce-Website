@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Col, Row, Button } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { CartState } from './context/Context';
 import { Link } from 'react-router-dom';
+import axios from 'axios'; // Import axios for making HTTP requests
 import './styles.css';
 
 const SingleProducts = ({ prod }) => {
@@ -10,8 +11,48 @@ const SingleProducts = ({ prod }) => {
     dispatch,
   } = CartState();
 
+  const addToCartHandler = async (product) => {
+    try {
+      // Make a POST request to add the product to the cart
+      const response = await axios.post(
+        `https://crudcrud.com/api/b0446aea7fe64d6aa27ddffe67bf3630
+/${getUserEmail()}`,
+        product,
+      );
+      // Dispatch an action to update the cart state
+      dispatch({
+        type: 'ADD_TO_CART',
+        payload: product,
+      });
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+    }
+  };
+
+  const removeFromCartHandler = async (product) => {
+    try {
+      // Make a DELETE request to remove the product from the cart
+      const response = await axios.delete(
+        `https://crudcrud.com/api/b0446aea7fe64d6aa27ddffe67bf3630
+/${getUserEmail()}/${product.id}`,
+      );
+      // Dispatch an action to update the cart state
+      dispatch({
+        type: 'REMOVE_FROM_CART',
+        payload: product,
+      });
+    } catch (error) {
+      console.error('Error removing product from cart:', error);
+    }
+  };
+
+  const getUserEmail = () => {
+    // Retrieve user email from localStorage or context
+    // Replace this with your actual implementation
+    return 'useremail';
+  };
+
   return (
-    // <div>{prod.title}</div>
     <div className="products">
       <Card>
         <Card.Img
@@ -33,10 +74,7 @@ const SingleProducts = ({ prod }) => {
             <Button
               variant="danger"
               onClick={() => {
-                dispatch({
-                  type: 'REMOVE_FROM_CART',
-                  payload: prod,
-                });
+                removeFromCartHandler(prod);
               }}
             >
               Remove From Cart
@@ -44,10 +82,7 @@ const SingleProducts = ({ prod }) => {
           ) : (
             <Button
               onClick={() => {
-                dispatch({
-                  type: 'ADD_TO_CART',
-                  payload: prod,
-                });
+                addToCartHandler(prod);
               }}
             >
               Add to Cart

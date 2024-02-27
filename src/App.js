@@ -1,35 +1,16 @@
-// import { Navbar, Container } from 'react-bootstrap';
-import './App.css';
+import React, { useContext } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
-import { Route, Switch, Redirect } from 'react-router-dom';
 import ProductDetails from './components/Link/ProductDetails';
 import HomePage from './components/Link/HomePage';
 import About from './components/Link/About';
 import Contact from './components/Link/Contact';
 import Form from './components/Link/Form';
-import {} from 'react-bootstrap';
-import { useContext } from 'react';
-import Context, { CartState } from './components/context/Context';
 import AuthContext from './components/context/auth-context';
 
 const App = () => {
-  const autCtx = useContext(AuthContext);
-
-  const contactUsPage = async (contact) => {
-    const response = await fetch(
-      'https://movie-list-62da6-default-rtdb.asia-southeast1.firebasedatabase.app/contact.json',
-      {
-        method: 'POST',
-        body: JSON.stringify(contact),
-        headers: {
-          'COntent-Type': 'application/json',
-        },
-      },
-    );
-    const data = await response.json();
-    console.log(data);
-  };
+  const authCtx = useContext(AuthContext);
 
   return (
     <div>
@@ -43,21 +24,24 @@ const App = () => {
             <About />
           </Route>
           <Route path="/Contact">
-            <Contact onAddContact={contactUsPage} />
+            <Contact />
           </Route>
           <Route path="/Store/:productId">
-            <ProductDetails />
+            {authCtx.isLoggedIn ? <ProductDetails /> : <Redirect to="/Form" />}
           </Route>
           <Route path="/Store">
-            {autCtx.isLoggedIn && <Home />}
-            {!autCtx.isLoggedIn && <Redirect to="/Form" />}
+            {authCtx.isLoggedIn ? (
+              <Home to="/Store" />
+            ) : (
+              <Redirect to="/Form" />
+            )}
           </Route>
           <Route path="/Form">
             <Form />
           </Route>
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
+          {/* <Route path="*">
+            <Redirect to="/HomePage" />
+          </Route> */}
         </Switch>
       </main>
     </div>

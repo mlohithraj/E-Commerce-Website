@@ -1,11 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react'; // Import useContext
 import classes from './styles.css';
 import { useHistory } from 'react-router-dom';
+// import AuthContext from './context/auth-context'; // Import AuthContext
+import AuthContext from '../context/auth-context';
 
 const Form = () => {
   const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+
+  // Get the context value
+  const authCtx = useContext(AuthContext);
 
   const [isLogin, setIsLogin] = useState(true);
 
@@ -42,7 +47,10 @@ const Form = () => {
           }
         })
         .then((data) => {
-          
+          // Set user email in context after successful login
+          authCtx.login(data.email);
+          // Redirect to home page or desired route
+          history.replace('/'); // Redirect to home page
         })
         .catch((err) => {
           alert(err.message);
